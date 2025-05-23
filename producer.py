@@ -3,8 +3,10 @@ import json
 import time
 from faker import Faker
 from polygon import RESTClient
+from secrets import API_KEY
 
-api_key = "KP7mYadnFqC6WMCjzJbY7LpDpYtl_VWw"
+
+api_key = API_KEY
 client = RESTClient(api_key=api_key)
 
 fake = Faker()
