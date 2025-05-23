@@ -2,9 +2,39 @@ from airflow import DAG
 from datetime import datetime
 from airflow.operators.python_operator import PythonOperator
 
+from confluent_kafka import Consumer
+
+TOPIC = "options_data_stream"
+
+c = Consumer({
+    'bootstrap.servers': 'localhost:9092',
+    'group.id': 'my-options-group',
+    'auto.offset.reset': 'earliest'
+})
+
+c.subscribe([TOPIC])
 
 def consume_from_kafka():
-    ""
+    try:
+        while True:
+            msg = c.poll(1.0)
+
+            if msg is None:
+                continue
+            if msg.error():
+                print("Consumer error: {}".format(msg.error()))
+                continue
+
+            print('Received message: {}'.format(msg.value().decode('utf-8')))
+            return msg.value().decode('utf-8')
+    except KeyboardInterrupt:
+        print("Stopping consumer...")
+    finally:
+        c.close()
+        print("Consumer closed.")
+    
+    
+    
 
 def clean_and_transform():
     ""
