@@ -1,10 +1,13 @@
 from airflow import DAG
 from datetime import datetime
 from airflow.operators.python_operator import PythonOperator
-
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 from confluent_kafka import Consumer
 
 TOPIC = "options_data_stream"
+POSTGRES_CONN_ID = "postgres"
+
+
 
 c = Consumer({
     'bootstrap.servers': 'localhost:9092',
@@ -39,8 +42,34 @@ def consume_from_kafka():
 def clean_and_transform():
     ""
 
+
+
 def store_to_postgres():
-    ""
+    
+    
+    query = """
+    CREATE TABLE IF NOT EXISTS options_data (
+        id VARCHAR(255) PRIMARY KEY,
+        open DECIMAL,
+        close DECIMAL,
+        low DECIMAL,
+        volume DECIMAL,
+        vwap DECIMAL,
+        timestamp DECIMAL,
+        transactions DECIMAL
+    )
+    """
+    try:
+        hook = PostgresHook(postgres_conn_id=POSTGRES_CONN_ID)
+        conn = hook.get_conn()
+        cursor = conn.cursor()
+        cursor.execute(query)
+        conn.commit()
+        return 0
+    except Exception as e:
+        print("Error creating table:", e)
+        return 1
+    
     
 def archive_to_s3():
     ""
