@@ -1,0 +1,15 @@
+{"timestamp":"2025-05-24T01:48:01.070403","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-24T01:48:01.071984","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-24T01:48:01.216691Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:48:01.219429Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:48:01.219579Z","level":"info","event":"Current task name:create_stream_data_table","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:48:01.219708Z","level":"info","event":"Dag name:options_data_pipeline","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:48:01.183219","level":"info","event":"Executing: \n    CREATE TABLE IF NOT EXISTS options_data (\n        id VARCHAR(255) PRIMARY KEY,\n        open DECIMAL,\n        close DECIMAL,\n        low DECIMAL,\n        volume DECIMAL,\n        vwap DECIMAL,\n        timestamp DECIMAL,\n        transactions DECIMAL\n    );\n    ","logger":"airflow.task.operators.airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator"}
+{"timestamp":"2025-05-24T01:48:01.186057","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}
+{"timestamp":"2025-05-24T01:48:01.217238","level":"info","event":"Connection Retrieved 'postgres'","logger":"airflow.hooks.base"}
+{"timestamp":"2025-05-24T01:48:01.219263","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}
+{"timestamp":"2025-05-24T01:48:01.246083","level":"info","event":"Connection Retrieved 'postgres'","logger":"airflow.hooks.base"}
+{"timestamp":"2025-05-24T01:48:01.258627","level":"info","event":"Running statement: \n    CREATE TABLE IF NOT EXISTS options_data (\n        id VARCHAR(255) PRIMARY KEY,\n        open DECIMAL,\n        close DECIMAL,\n        low DECIMAL,\n        volume DECIMAL,\n        vwap DECIMAL,\n        timestamp DECIMAL,\n        transactions DECIMAL\n    );\n    , parameters: None","logger":"airflow.task.hooks.airflow.providers.postgres.hooks.postgres.PostgresHook"}
+{"timestamp":"2025-05-24T01:48:01.281091Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:48:01.281320Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:48:01.281465Z","level":"info","event":"Task operator:<Task(SQLExecuteQueryOperator): create_stream_data_table>","chan":"stdout","logger":"task"}

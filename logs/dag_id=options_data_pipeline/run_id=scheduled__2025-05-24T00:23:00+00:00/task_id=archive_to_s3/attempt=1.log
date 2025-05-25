@@ -1,0 +1,11 @@
+{"timestamp":"2025-05-24T00:23:09.143557","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-24T00:23:09.143942","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-24T00:23:09.187948Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T00:23:09.188122Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T00:23:09.188198Z","level":"info","event":"Current task name:archive_to_s3","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T00:23:09.188265Z","level":"info","event":"Dag name:options_data_pipeline","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T00:23:09.188329Z","level":"info","event":"Archived to S3 (placeholder).","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T00:23:09.188390Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T00:23:09.188451Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T00:23:09.188544Z","level":"info","event":"Task operator:<Task(PythonOperator): archive_to_s3>","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T00:23:09.177496","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}

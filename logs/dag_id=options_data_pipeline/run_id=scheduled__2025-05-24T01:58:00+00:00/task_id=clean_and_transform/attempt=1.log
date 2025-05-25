@@ -1,0 +1,10 @@
+{"timestamp":"2025-05-24T01:58:08.133427","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-24T01:58:08.135504","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-24T01:58:08.212590Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:58:08.212820Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:58:08.212941Z","level":"info","event":"Current task name:clean_and_transform","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:58:08.213016Z","level":"info","event":"Dag name:options_data_pipeline","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:58:08.222997","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}
+{"timestamp":"2025-05-24T01:58:08.237897Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:58:08.238045Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:58:08.238185Z","level":"info","event":"Task operator:<Task(PythonOperator): clean_and_transform>","chan":"stdout","logger":"task"}

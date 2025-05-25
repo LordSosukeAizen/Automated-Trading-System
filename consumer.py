@@ -3,9 +3,9 @@ from confluent_kafka import Consumer
 TOPIC = "options_data_stream"
 
 c = Consumer({
-    'bootstrap.servers': 'localhost:9092',
-    'group.id': 'my-options-group',
-    'auto.offset.reset': 'earliest'
+     "bootstrap.servers": "localhost:9092",
+    "group.id": "my-options-group",
+    "auto.offset.reset": "earliest",
 })
 
 c.subscribe([TOPIC])

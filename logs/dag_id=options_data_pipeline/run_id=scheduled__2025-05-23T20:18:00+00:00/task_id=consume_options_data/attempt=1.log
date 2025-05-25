@@ -1,0 +1,18 @@
+{"timestamp":"2025-05-23T20:18:40.454780","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-23T20:18:40.456110","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-23T20:18:40.664959Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T20:18:40.668148Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T20:18:40.669330Z","level":"info","event":"Current task name:consume_options_data","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T20:18:40.670953Z","level":"info","event":"Dag name:options_data_pipeline","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T20:18:40.611383","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}
+{"timestamp":"2025-05-23T20:18:40.665525","level":"info","event":"Connection Retrieved 'option_stream'","logger":"airflow.hooks.base"}
+{"timestamp":"2025-05-23T20:18:40.672662Z","level":"error","event":"%3|1748031520.672|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Connect to ipv4#127.0.0.1:9092 failed: Connection refused (after 0ms in state CONNECT)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-05-23T20:18:40.672857Z","level":"info","event":"Exception received:  KafkaError{code=_TRANSPORT,val=-195,str=\"localhost:9092/bootstrap: Connect to ipv4#127.0.0.1:9092 failed: Connection refused (after 0ms in state CONNECT)\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T20:18:40.673067Z","level":"info","event":"Exception received:  KafkaError{code=_ALL_BROKERS_DOWN,val=-187,str=\"1/1 brokers are down\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T20:18:40.723855Z","level":"error","event":"%3|1748031520.723|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Connect to ipv4#127.0.0.1:9092 failed: Connection refused (after 0ms in state CONNECT, 1 identical error(s) suppressed)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-05-23T20:18:40.725052Z","level":"info","event":"Exception received:  KafkaError{code=_TRANSPORT,val=-195,str=\"localhost:9092/bootstrap: Connect to ipv4#127.0.0.1:9092 failed: Connection refused (after 0ms in state CONNECT, 1 identical error(s) suppressed)\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T20:18:45.689198","level":"info","event":"Reached end of log. Exiting.","logger":"airflow.task.operators.airflow.providers.apache.kafka.operators.consume.ConsumeFromTopicOperator"}
+{"timestamp":"2025-05-23T20:18:45.697101","level":"info","event":"committing offset at end_of_operator","logger":"airflow.task.operators.airflow.providers.apache.kafka.operators.consume.ConsumeFromTopicOperator"}
+{"timestamp":"2025-05-23T20:18:45.854996Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T20:18:45.855288Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T20:18:45.855419Z","level":"info","event":"Task operator:<Task(ConsumeFromTopicOperator): consume_options_data>","chan":"stdout","logger":"task"}

@@ -41,7 +41,6 @@ def get_options_data(ticker, from_date, to_date):
 
 def convert_agg_to_dict(data):
     return {
-        "id": fake.uuid4(),
         "open": data.open,
         "close": data.close,
         "low": data.low,
@@ -62,7 +61,7 @@ while i <= dataLEN:
 
     producer.produce(
         topic=topic,
-        key=options_data['id'],
+        key=str(options_data['timestamp']),
         value=json.dumps(options_data)
     )
     producer.flush()

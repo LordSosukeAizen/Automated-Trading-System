@@ -1,0 +1,11 @@
+{"timestamp":"2025-05-23T21:19:46.813652","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-23T21:19:46.814406","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-23T21:19:46.887885Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T21:19:46.888312Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T21:19:46.888486Z","level":"info","event":"Current task name:store_to_postgres","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T21:19:46.888613Z","level":"info","event":"Dag name:options_data_pipeline","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T21:19:46.921508Z","level":"info","event":"No data to store.","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T21:19:46.922688","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}
+{"timestamp":"2025-05-23T21:19:46.951414Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T21:19:46.951575Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-23T21:19:46.951674Z","level":"info","event":"Task operator:<Task(PythonOperator): store_to_postgres>","chan":"stdout","logger":"task"}

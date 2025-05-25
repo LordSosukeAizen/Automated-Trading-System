@@ -1,0 +1,25 @@
+{"timestamp":"2025-05-24T01:57:02.486710","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-24T01:57:02.487989","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-24T01:57:02.683702Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:02.685513Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:02.686951Z","level":"info","event":"Current task name:consume_options_data","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:02.687087Z","level":"info","event":"Dag name:options_data_pipeline","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:02.623269","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}
+{"timestamp":"2025-05-24T01:57:02.684300","level":"info","event":"Connection Retrieved 'option_stream'","logger":"airflow.hooks.base"}
+{"timestamp":"2025-05-24T01:57:02.743174Z","level":"error","event":"%3|1748051822.743|FAIL|rdkafka#consumer-1| [thrd:localhost:9092/1]: localhost:9092/1: Connect to ipv4#127.0.0.1:9092 failed: Connection refused (after 0ms in state CONNECT)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-05-24T01:57:02.743465Z","level":"info","event":"Exception received:  KafkaError{code=_TRANSPORT,val=-195,str=\"localhost:9092/1: Connect to ipv4#127.0.0.1:9092 failed: Connection refused (after 0ms in state CONNECT)\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:02.743588Z","level":"info","event":"Exception received:  KafkaError{code=_ALL_BROKERS_DOWN,val=-187,str=\"1/1 brokers are down\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:03.701034Z","level":"info","event":"Exception received:  KafkaError{code=_ALL_BROKERS_DOWN,val=-187,str=\"2/2 brokers are down\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:03.743659Z","level":"info","event":"Exception received:  KafkaError{code=_ALL_BROKERS_DOWN,val=-187,str=\"2/2 brokers are down\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:04.695606Z","level":"info","event":"Exception received:  KafkaError{code=_ALL_BROKERS_DOWN,val=-187,str=\"2/2 brokers are down\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:04.747192Z","level":"info","event":"Exception received:  KafkaError{code=_ALL_BROKERS_DOWN,val=-187,str=\"2/2 brokers are down\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:05.700860Z","level":"info","event":"Exception received:  KafkaError{code=_ALL_BROKERS_DOWN,val=-187,str=\"2/2 brokers are down\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:05.751519Z","level":"info","event":"Exception received:  KafkaError{code=_ALL_BROKERS_DOWN,val=-187,str=\"2/2 brokers are down\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:06.703528Z","level":"info","event":"Exception received:  KafkaError{code=_ALL_BROKERS_DOWN,val=-187,str=\"2/2 brokers are down\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:06.755810Z","level":"info","event":"Exception received:  KafkaError{code=_ALL_BROKERS_DOWN,val=-187,str=\"2/2 brokers are down\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:07.693735","level":"info","event":"Reached end of log. Exiting.","logger":"airflow.task.operators.airflow.providers.apache.kafka.operators.consume.ConsumeFromTopicOperator"}
+{"timestamp":"2025-05-24T01:57:07.695022","level":"info","event":"committing offset at end_of_operator","logger":"airflow.task.operators.airflow.providers.apache.kafka.operators.consume.ConsumeFromTopicOperator"}
+{"timestamp":"2025-05-24T01:57:07.803131Z","level":"info","event":"Exception received:  KafkaError{code=_ALL_BROKERS_DOWN,val=-187,str=\"2/2 brokers are down\"}","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:07.803406Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:07.803583Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-24T01:57:07.803714Z","level":"info","event":"Task operator:<Task(ConsumeFromTopicOperator): consume_options_data>","chan":"stdout","logger":"task"}
