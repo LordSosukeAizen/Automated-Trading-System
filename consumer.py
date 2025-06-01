@@ -1,6 +1,6 @@
 from confluent_kafka import Consumer
 
-TOPIC = "options_data_stream"
+TOPIC =  "stock-options"
 
 c = Consumer({
      "bootstrap.servers": "localhost:9092",
