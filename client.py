@@ -7,7 +7,7 @@ import json
 api_key = API_KEY
 client = RESTClient(api_key=api_key)
 
-URI = "ws://localhost:8675"  # WebSocket scheme
+URI = "ws://localhost:8675"  
 
 def get_options_data(ticker, from_date, to_date):
     try:
@@ -42,7 +42,7 @@ def stream_data(data_list):
                 packet = convert_agg_to_dict(d)
                 websocket.send(json.dumps(packet))
                 print("Sent:", packet)
-                time.sleep(5)  # Simulate real-time pacing
+                time.sleep(5) 
             except Exception as e:
                 print("Error sending data:", e)
 

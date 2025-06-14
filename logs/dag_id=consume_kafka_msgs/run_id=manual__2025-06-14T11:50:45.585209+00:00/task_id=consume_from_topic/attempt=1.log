@@ -1,0 +1,7 @@
+{"timestamp":"2025-06-14T11:50:48.356855","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-06-14T11:50:48.358289","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-06-14T11:50:48.448073","level":"warning","event":"max_batch_size (1000) > max_messages (1). Setting max_messages to 1000 ","logger":"airflow.task.operators.airflow.providers.apache.kafka.operators.consume.ConsumeFromTopicOperator"}
+{"timestamp":"2025-06-14T11:50:48.473945","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}
+{"timestamp":"2025-06-14T11:50:48.525429","level":"info","event":"Connection Retrieved 'TEST'","logger":"airflow.hooks.base"}
+{"timestamp":"2025-06-14T11:51:48.560509","level":"info","event":"Reached end of log. Exiting.","logger":"airflow.task.operators.airflow.providers.apache.kafka.operators.consume.ConsumeFromTopicOperator"}
+{"timestamp":"2025-06-14T11:51:48.561988","level":"info","event":"committing offset at end_of_operator","logger":"airflow.task.operators.airflow.providers.apache.kafka.operators.consume.ConsumeFromTopicOperator"}

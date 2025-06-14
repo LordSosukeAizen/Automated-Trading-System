@@ -1,0 +1,4 @@
+{"timestamp":"2025-06-14T08:12:56.375575","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-06-14T08:12:56.376455","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-06-14T08:12:56.430636","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}
+{"timestamp":"2025-06-14T08:12:56.457869","level":"info","event":"Connection Retrieved 'TEST'","logger":"airflow.hooks.base"}

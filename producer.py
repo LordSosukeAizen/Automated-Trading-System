@@ -78,12 +78,12 @@ import json
 import websockets
 from confluent_kafka import SerializingProducer
 
-KAFKA_TOPIC = "stock-options"
+KAFKA_TOPIC = "stock-data"
 KAFKA_BROKER = "localhost:9092"
 
 # Initialize Kafka Producer
 producer = SerializingProducer({
-    'bootstrap.servers': 'localhost:9092'
+    'bootstrap.servers': KAFKA_BROKER
 })
 
 
@@ -106,7 +106,7 @@ async def handle_websocket(websocket):
                 key=str(data.get("timestamp", "")),
                 value=json.dumps(data)
             )
-            producer.poll(0)  # Serve delivery callbacks
+            producer.flush()  # Serve delivery callbacks
 
     except websockets.ConnectionClosed:
         print("WebSocket client disconnected.")

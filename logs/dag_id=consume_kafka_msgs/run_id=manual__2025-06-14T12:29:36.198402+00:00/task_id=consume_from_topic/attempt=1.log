@@ -1,0 +1,6 @@
+{"timestamp":"2025-06-14T12:29:38.562649","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-06-14T12:29:38.563464","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-06-14T12:29:38.616514","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}
+{"timestamp":"2025-06-14T12:29:38.632635","level":"info","event":"Connection Retrieved 'TEST'","logger":"airflow.hooks.base"}
+{"timestamp":"2025-06-14T12:29:42.681634","level":"info","event":"Kafka Msg: b'1687924800000' - {\"open\": 187.93, \"close\": 189.25, \"low\": 187.6, \"high\": 189.9, \"volume\": 51216801.0, \"vwap\": 188.8916, \"timestamp\": 1687924800000, \"transactions\": 559145}","logger":"airflow"}
+{"timestamp":"2025-06-14T12:29:42.682697","level":"info","event":"committing offset at end_of_operator","logger":"airflow.task.operators.airflow.providers.apache.kafka.operators.consume.ConsumeFromTopicOperator"}

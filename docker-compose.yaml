@@ -58,7 +58,7 @@ x-airflow-common:
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
-    AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__CORE__EXECUTION_API_SERVER_URL: 'http://airflow-apiserver:8080/execution/'
     # yamllint disable rule:line-length
     # Use simple http server on scheduler for health checks
@@ -92,6 +92,8 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - airflow-net
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -99,11 +101,23 @@ services:
       - zookeeper
     ports:
       - "9092:9092"
+      - "29092:29092"
+    
     environment:
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,INTERNAL://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,INTERNAL://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+    networks:
+      - airflow-net
+
 
     
 
@@ -121,6 +135,8 @@ services:
       retries: 5
       start_period: 5s
     restart: always
+    networks:
+        - airflow-net
 
 
   airflow-apiserver:
@@ -139,7 +155,8 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-
+    networks:
+        - airflow-net
   airflow-scheduler:
     <<: *airflow-common
     command: scheduler
@@ -154,7 +171,8 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-
+    networks:
+        - airflow-net
   airflow-dag-processor:
     <<: *airflow-common
     command: dag-processor
@@ -169,7 +187,8 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-
+    networks:
+        - airflow-net
 
   airflow-triggerer:
     <<: *airflow-common
@@ -185,6 +204,8 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
+    networks:
+        - airflow-net
 
   airflow-init:
     <<: *airflow-common
@@ -277,7 +298,8 @@ services:
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
       _PIP_ADDITIONAL_REQUIREMENTS: ''
     user: "0:0"
-
+    networks:
+        - airflow-net
   airflow-cli:
     <<: *airflow-common
     profiles:
@@ -293,8 +315,13 @@ services:
     depends_on:
       <<: *airflow-common-depends-on
 
- 
+    networks:
+        - airflow-net
 
 
 volumes:
   postgres-db-volume:
+
+networks:
+  airflow-net:
+    driver: bridge

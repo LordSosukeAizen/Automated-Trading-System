@@ -1,11 +1,15 @@
 from confluent_kafka import Consumer
+import json
 
-TOPIC =  "stock-options"
+
+TOPIC =  "stock-data"
 
 c = Consumer({
      "bootstrap.servers": "localhost:9092",
-    "group.id": "my-options-group",
-    "auto.offset.reset": "earliest",
+        'group.id': 'options-consumer-group',
+    'auto.offset.reset': 'earliest',
+    'enable.auto.commit': False,
+    'isolation.level': 'read_committed'
 })
 
 c.subscribe([TOPIC])
@@ -21,7 +25,10 @@ def consume_from_kafka():
                 print("Consumer error: {}".format(msg.error()))
                 continue
 
-            print('Received message: {}'.format(msg.value().decode('utf-8')))
+            data = json.loads(msg.value().decode('utf-8'))
+            print(f"Consumed: {data}")
+            c.commit(asynchronous=False)
+
     except KeyboardInterrupt:
         print("Stopping consumer...")
     finally:
