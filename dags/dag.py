@@ -106,7 +106,14 @@ def consume_kafka_msgs():
 
             return transformed_messages
             
-            
+    @task
+    def signal_generation():
+        """
+        This Task genrates signals from the data stream Using RL model
+        """
+    
+    
+    
     @task
     def store_to_postgres(transformed_data):
         """
