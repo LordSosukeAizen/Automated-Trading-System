@@ -1,5 +1,5 @@
 from websockets.sync.client import connect
-from secret_key import API_KEY
+from secret import API_KEY
 from polygon import RESTClient
 import time
 import json
