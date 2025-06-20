@@ -4,12 +4,34 @@ from airflow.sdk import task, dag
 from airflow.exceptions import AirflowException
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
+from research.agent import Agent, Finance
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.optimizers import Adam
+import numpy as np
+
+
+model_file_path = "model.keras"
+
+opt = Adam(learning_rate=0.001)
+NUM_FEATURES = 10
+NUM_ACTIONS = 2
 
 
 KAFKA_TOPIC = ["stock-data"]
 KAFKA_CONFIG_ID = "TEST"
 POSTGRES_CONN_ID = "postgres"
 
+
+def build_model(num_features, num_actions):
+        # Model
+    model = Sequential()
+    model.add(Input(shape=(num_features,)))
+    model.add(Dense(24, activation="relu"))
+    model.add(Dense(24, activation="relu"))
+    model.add(Dense(num_actions, activation="linear"))
+    model.compile(loss="mse", optimizer=opt)
+    return model
 @dag(
  schedule="@hourly"   
 )
@@ -107,11 +129,34 @@ def consume_kafka_msgs():
             return transformed_messages
             
     @task
-    def signal_generation():
+    def signal_generation(transformed_data):
         """
-        This Task genrates signals from the data stream Using RL model
+    Generates buy/sell signals using pre-trained model.
         """
-    
+
+        model = build_model(num_features=NUM_FEATURES, num_actions=NUM_ACTIONS)
+        try:
+            model.load_weights(model_file_path)
+        except Exception as e:
+            raise AirflowException(f"Failed to load model weights: {e}")
+  
+        if len(transformed_data) < NUM_FEATURES:
+            raise ValueError("Not enough data to form state")
+
+        # Only take closing prices
+        data_ = transformed_data[-NUM_FEATURES:]
+        current_state = [closing_price for _, closing_price, *_ in data_]
+        current_state = np.array(current_state).reshape(1, -1)
+        current_state = (current_state - np.mean(current_state)) / np.std(current_state)
+
+        best_action = np.argmax(model.predict(current_state, verbose=0)[0])
+        
+        print(f'{best_action} is best action for current state')
+        
+        if best_action == 1:
+            print("🔼 Buy Signal Generated")
+        else:
+            print("🔽 Sell Signal Generated")
     
     
     @task
@@ -143,12 +188,12 @@ def consume_kafka_msgs():
             cursor.close()
             conn.close()
 
-        
-            
+
     consume = consumer_from_topic()
     clean = clean_and_transform(consume)
     load_data_to_db = store_to_postgres(clean)
-    create_table >> consume >> clean >> load_data_to_db
+    signal = signal_generation(clean)
+    create_table >> consume >> clean >> load_data_to_db >> signal
     
     
 dag = consume_kafka_msgs()
