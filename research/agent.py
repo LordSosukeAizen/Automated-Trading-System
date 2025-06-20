@@ -7,7 +7,7 @@ from tqdm import tqdm
 from tensorflow.keras.optimizers import Adam
 import pandas as pd
 from collections import deque
-
+import time
 
 NUM_FEATURES = 5
 
@@ -139,7 +139,7 @@ class Agent():
             print(f'{e} episode has started')
             state, _ = self.env.reset()
             state = np.reshape(state, [1, self.num_features])
-            for _ in range(self.iterations):
+            for f in range(self.iterations):
                 action = self.act(state)
                 next_state, treward, done, _, _ = self.env.step(action)
                 
@@ -147,8 +147,8 @@ class Agent():
                 self.memory.append((state, action, next_state, treward, done))
                 if done:
                     self.rewards.append(treward)
-                    self.max_reward = max(self.max_reward, treward)
-                    log = f'episode: {e} | treward: {treward} | max_reward: {self.max_reward}'
+                    self.max_reward = max(self.max_reward, f)
+                    log = f'episode: {e} | treward: {f} | max_reward: {self.max_reward}'
                     print(log)
                     break
                 
@@ -157,10 +157,8 @@ class Agent():
                 
                 
             if len(self.memory) >= self.replay_size:
-                    
                     self.replay()
                     print("Replay has finished")
-                    self.memory = []
                     
             print(f'{e} episode has completed')
             
@@ -173,7 +171,7 @@ class Agent():
             done = False
             while not done:
                 action = np.argmax(self.model.predict(state, verbose=0)[0])
-                next_state, reward, done, _ = self.env.step(action)
+                next_state, reward, done, _, _ = self.env.step(action)
                 state = np.reshape(next_state, [1, self.num_features])
                 total_reward += reward
             print(f"Test Episode {ep+1} - Total Reward: {total_reward}")
@@ -183,3 +181,8 @@ class Agent():
 agent = Agent(env=fin, num_actions=2, num_features=NUM_FEATURES)
 
 agent.learn(num_episodes=100)
+
+print("\n\n\nTesting is Started wait for 10 sec")
+time.sleep(15)
+
+agent.test(num_episodes=10)
