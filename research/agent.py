@@ -182,6 +182,9 @@ agent = Agent(env=fin, num_actions=2, num_features=NUM_FEATURES)
 
 agent.learn(num_episodes=100)
 
+agent.model.save("model.keras")
+print("Model is saved")
+
 print("\n\n\nTesting is Started wait for 10 sec")
 time.sleep(15)
 
