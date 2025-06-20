@@ -1,3 +1,4 @@
 timeline.txt
 .env
 secret.py
+.DS_Store
